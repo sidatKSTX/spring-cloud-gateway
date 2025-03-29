@@ -10,4 +10,4 @@ WORKDIR /api_gateway_service
 COPY --from=build /api_gateway_service/target/*.jar api_gateway_service.jar
 
 # Use a minimal command to run the application
-ENTRYPOINT ["java", "-jar", "api_gateway_service.jar"
+ENTRYPOINT ["java", "-jar", "api_gateway_service.jar"]
