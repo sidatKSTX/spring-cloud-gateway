@@ -28,7 +28,7 @@ public class ApiGatewayConfig {
     }
 
     @Bean
-public CorsWebFilter corsWebFilter() {
+   public CorsWebFilter corsWebFilter() {
     CorsConfiguration config = new CorsConfiguration();
 
     // 🔐 Specify trusted origin instead of "*"
@@ -43,6 +43,6 @@ public CorsWebFilter corsWebFilter() {
     source.registerCorsConfiguration("/**", config);
 
     return new CorsWebFilter(source);
-}
+  }
 
 }
