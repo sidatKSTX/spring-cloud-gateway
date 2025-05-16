@@ -18,7 +18,7 @@ public class ApiGatewayConfig {
                 .route(p -> p.path("/api/bench-profiles/**")
                         //.filters(GatewayFilterSpec::tokenRelay)
                         .uri("lb://bench-profiles-service")) //user details microservice port number
-                .route(p -> p.path("/api/daily-submissions/**")
+                .route(p -> p.path("/api/dailysubmissions/**")
                         .uri("lb://daily-submissions-service"))
                 .route(p -> p.path("/api/interviews/**")
                         .uri("lb://interviews-service"))
