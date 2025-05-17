@@ -27,22 +27,22 @@ public class ApiGatewayConfig {
                 .build();
     }
 
-    @Bean
-   public CorsWebFilter corsWebFilter() {
-    CorsConfiguration config = new CorsConfiguration();
+  //  @Bean
+  //  public CorsWebFilter corsWebFilter() {
+  //   CorsConfiguration config = new CorsConfiguration();
 
-    // 🔐 Specify trusted origin instead of "*"
-    config.setAllowedOrigins(List.of("http://localhost:3000", "http://10.0.1.248:3000")); // Replace with your frontend URL
-    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-    config.setAllowedHeaders(List.of("*"));
+  //   // 🔐 Specify trusted origin instead of "*"
+  //   config.setAllowedOrigins(List.of("http://localhost:3000", "http://10.0.1.248:3000")); // Replace with your frontend URL
+  //   config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+  //   config.setAllowedHeaders(List.of("*"));
 
-    // ✅ Allows cookies and Authorization headers
-    config.setAllowCredentials(true);
+  //   // ✅ Allows cookies and Authorization headers
+  //   config.setAllowCredentials(true);
 
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", config);
+  //   UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+  //   source.registerCorsConfiguration("/**", config);
 
-    return new CorsWebFilter(source);
-  }
+  //   return new CorsWebFilter(source);
+  // }
 
 }
