@@ -34,7 +34,7 @@ public class ApiGatewayConfig {
     CorsConfiguration config = new CorsConfiguration();
 
     // 🔐 Specify trusted origin instead of "*"
-    config.setAllowedOrigins(List.of("http://localhost:3000", "http://10.0.1.248:3000")); // Replace with your frontend URL
+    config.setAllowedOrigins(List.of("http://localhost:3000", "https://apigateway.probuddy.us")); // Replace with your frontend URL
     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
     config.setAllowedHeaders(List.of("*"));
 
