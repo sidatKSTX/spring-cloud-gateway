@@ -2,6 +2,7 @@ package com.consultingfirm.api_gateway_service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.GatewayFilterSpec;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
@@ -13,6 +14,9 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 @Configuration
 public class ApiGatewayConfig {
+
+    @Value("${cors.allowed-origins}")
+    private String allowedOrigins;
 
     @Bean
     public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
@@ -34,7 +38,7 @@ public class ApiGatewayConfig {
     CorsConfiguration config = new CorsConfiguration();
 
     // 🔐 Specify trusted origin instead of "*"
-    config.setAllowedOrigins(List.of("https://consultingfirm.probuddy.us")); // Replace with your frontend URL
+    config.setAllowedOrigins(List.of(allowedOrigins));
     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
     config.setAllowedHeaders(List.of("*"));
 
