@@ -12,7 +12,7 @@ env:
   JAVA_VERSION: "21"
   MAVEN_OPTS: "-Xmx1024m"
   ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
-  ECR_REPOSITORY: api-gateway-service
+  ECR_REPOSITORY: consultingfirm/api-gateway-service
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:
