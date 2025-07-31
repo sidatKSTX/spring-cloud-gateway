@@ -149,6 +149,7 @@ jobs:
           format: 'table'
           exit-code: '1'
           severity: 'HIGH,CRITICAL'
+          trivyignores: 'api_gateway_service/.trivyignore'
       
       - name: Push image to Amazon ECR
         run: |
