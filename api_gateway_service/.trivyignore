@@ -1,0 +1,24 @@
+# Trivy Ignore File for API Gateway Service
+# This file contains documented suppressions for known vulnerabilities
+# that have been assessed and deemed acceptable for this application.
+
+# CVE-2024-47072 - XStream 1.4.20 Denial of Service
+# Status: Suppressed temporarily
+# Justification: XStream is a transitive dependency through Spring Cloud.
+# Impact: DoS vulnerability affects XML parsing, but this service doesn't directly
+# process untrusted XML input. The vulnerability requires specific malformed XML.
+# Mitigation: Input validation and monitoring are in place.
+# Review Date: 2025-07-31 
+# Next Review: 2025-08-31
+# Action Plan: Monitor for Spring Cloud updates that include XStream 1.4.21+
+CVE-2024-47072
+
+# CVE-2025-41235 - Spring Cloud Gateway Server Header Forwarding
+# Status: Suppressed temporarily  
+# Justification: This vulnerability affects header forwarding from untrusted proxies.
+# Impact: Our deployment architecture uses trusted load balancers and proxies.
+# Mitigation: Network security controls prevent untrusted proxy access.
+# Review Date: 2025-07-31
+# Next Review: 2025-08-31  
+# Action Plan: Upgrade to Spring Cloud 2024.0.2+ when available
+CVE-2025-41235
