@@ -113,13 +113,8 @@ jobs:
           echo "Building image: $IMAGE_URI"
           docker build -t $IMAGE_URI -t $LATEST_URI .
           
-          echo "Setting outputs..."
           echo "image-uri=$IMAGE_URI" >> $GITHUB_OUTPUT
           echo "latest-uri=$LATEST_URI" >> $GITHUB_OUTPUT
-          
-          echo "Outputs set:"
-          echo "IMAGE_URI: $IMAGE_URI"
-          echo "LATEST_URI: $LATEST_URI"
       
       - name: Run Trivy vulnerability scanner on filesystem
         uses: aquasecurity/trivy-action@0.17.0
@@ -190,21 +185,11 @@ jobs:
       
       - name: Pull and run comprehensive security scan
         run: |
-          IMAGE_URI="${{ needs.build-and-scan.outputs.image-uri }}"
+          # Construct IMAGE_URI directly since GitHub Actions masks the output containing ECR registry
+          IMAGE_URI="${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}"
           
           echo "## 🔍 Comprehensive Security Analysis" >> $GITHUB_STEP_SUMMARY
-          echo "**Debug Info:**" >> $GITHUB_STEP_SUMMARY
-          echo "- Received IMAGE_URI: '$IMAGE_URI'" >> $GITHUB_STEP_SUMMARY
-          
-          echo "Debug: IMAGE_URI received from previous job: '$IMAGE_URI'"
-          
-          if [ -z "$IMAGE_URI" ]; then
-            echo "❌ ERROR: IMAGE_URI is empty!" >> $GITHUB_STEP_SUMMARY
-            echo "Available outputs from build-and-scan job:" >> $GITHUB_STEP_SUMMARY
-            echo "- image-uri: ${{ needs.build-and-scan.outputs.image-uri }}" >> $GITHUB_STEP_SUMMARY
-            echo "- image-digest: ${{ needs.build-and-scan.outputs.image-digest }}" >> $GITHUB_STEP_SUMMARY
-            exit 1
-          fi
+          echo "**Image URI:** \`$IMAGE_URI\`" >> $GITHUB_STEP_SUMMARY
           
           # Pull the image
           docker pull $IMAGE_URI
